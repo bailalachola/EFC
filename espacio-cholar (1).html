@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Espacio de Formación Cholar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Boogaloo&family=Nunito:wght@400;600;700;800&family=Permanent+Marker&display=swap" rel="stylesheet">
+<style>
+:root {
+  --rosa: #e63985;
+  --amarillo: #ffd23f;
+  --violeta: #7b2d8e;
+  --verde: #2ec4b6;
+  --naranja: #ff6b35;
+  --crema: #fff8f0;
+  --oscuro: #1a1023;
+  --celeste: #48bfe3;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+body {
+  font-family: 'Nunito', sans-serif;
+  background: var(--crema);
+  color: var(--oscuro);
+  overflow-x: hidden;
+}
+
+/* ===== HERO ===== */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem 1.5rem;
+  position: relative;
+  background: var(--violeta);
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 20% 80%, var(--rosa) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, var(--naranja) 0%, transparent 50%),
+    radial-gradient(circle at 50% 50%, var(--violeta) 0%, transparent 70%);
+  opacity: 0.6;
+}
+
+.hero-confetti {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.confetti-piece {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border-radius: 2px;
+  opacity: 0.5;
+  animation: confetti-fall linear infinite;
+}
+
+@keyframes confetti-fall {
+  0% { transform: translateY(-20px) rotate(0deg); opacity: 0; }
+  10% { opacity: 0.5; }
+  90% { opacity: 0.5; }
+  100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+}
+
+.hero-badge {
+  display: inline-block;
+  background: var(--amarillo);
+  color: var(--oscuro);
+  font-family: 'Nunito', sans-serif;
+  font-weight: 800;
+  font-size: 0.8rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 0.4rem 1.2rem;
+  border-radius: 40px;
+  margin-bottom: 1.5rem;
+  transform: rotate(-2deg);
+  animation: badge-pop 0.6s ease-out both;
+  animation-delay: 0.3s;
+}
+
+@keyframes badge-pop {
+  0% { transform: rotate(-2deg) scale(0); }
+  70% { transform: rotate(-2deg) scale(1.1); }
+  100% { transform: rotate(-2deg) scale(1); }
+}
+
+.hero h1 {
+  font-family: 'Boogaloo', cursive;
+  font-size: clamp(3rem, 10vw, 6rem);
+  color: var(--amarillo);
+  line-height: 1;
+  margin-bottom: 0.3rem;
+  text-shadow: 4px 4px 0 rgba(0,0,0,0.2);
+  animation: title-in 0.8s ease-out both;
+  animation-delay: 0.1s;
+}
+
+@keyframes title-in {
+  0% { transform: translateY(40px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+.hero h2 {
+  font-family: 'Permanent Marker', cursive;
+  font-size: clamp(1rem, 3.5vw, 1.6rem);
+  color: var(--crema);
+  font-weight: 400;
+  margin-bottom: 2rem;
+  opacity: 0.9;
+  animation: title-in 0.8s ease-out both;
+  animation-delay: 0.4s;
+}
+
+.hero-frase {
+  font-family: 'Nunito', sans-serif;
+  font-size: clamp(1.1rem, 3vw, 1.4rem);
+  color: var(--crema);
+  max-width: 500px;
+  line-height: 1.6;
+  margin: 0 auto 2.5rem;
+  animation: title-in 0.8s ease-out both;
+  animation-delay: 0.6s;
+}
+
+.hero-frase em {
+  color: var(--amarillo);
+  font-style: normal;
+  font-weight: 700;
+}
+
+.scroll-cue {
+  animation: bounce 2s ease-in-out infinite;
+  animation-delay: 2s;
+  color: var(--amarillo);
+  font-size: 2rem;
+  opacity: 0.7;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(10px); }
+}
+
+/* ===== SECTIONS ===== */
+section {
+  padding: 4rem 1.5rem;
+}
+
+.section-inner {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.section-label {
+  font-family: 'Permanent Marker', cursive;
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--rosa);
+  margin-bottom: 0.5rem;
+}
+
+.section-title {
+  font-family: 'Boogaloo', cursive;
+  font-size: clamp(2rem, 6vw, 3rem);
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+}
+
+.section-text {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: #3a2e4a;
+  max-width: 600px;
+}
+
+.section-text strong {
+  color: var(--violeta);
+}
+
+/* ===== QUÉ ES ===== */
+.que-es {
+  background: var(--crema);
+  position: relative;
+}
+
+.que-es::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 6px;
+  background: linear-gradient(90deg, var(--rosa), var(--amarillo), var(--verde), var(--celeste), var(--violeta));
+}
+
+/* ===== TALLERES ===== */
+.talleres {
+  background: var(--oscuro);
+  color: var(--crema);
+  position: relative;
+}
+
+.talleres .section-label {
+  color: var(--amarillo);
+}
+
+.talleres .section-title {
+  color: var(--crema);
+}
+
+.talleres-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.2rem;
+  margin-top: 2rem;
+}
+
+.taller-card {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 16px;
+  padding: 1.5rem;
+  transition: transform 0.3s ease, background 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.taller-card:hover {
+  transform: translateY(-4px);
+  background: rgba(255,255,255,0.1);
+}
+
+.taller-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+}
+
+.taller-card:nth-child(1)::before { background: var(--rosa); }
+.taller-card:nth-child(2)::before { background: var(--amarillo); }
+.taller-card:nth-child(3)::before { background: var(--verde); }
+.taller-card:nth-child(4)::before { background: var(--celeste); }
+.taller-card:nth-child(5)::before { background: var(--naranja); }
+.taller-card:nth-child(6)::before { background: var(--violeta); }
+.taller-card:nth-child(7)::before { background: var(--rosa); }
+.taller-card:nth-child(8)::before { background: var(--amarillo); }
+
+.taller-emoji {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.taller-card h3 {
+  font-family: 'Nunito', sans-serif;
+  font-weight: 800;
+  font-size: 1.05rem;
+  margin-bottom: 0.4rem;
+}
+
+.taller-card p {
+  font-size: 0.9rem;
+  line-height: 1.5;
+  opacity: 0.75;
+}
+
+/* ===== CÓMO FUNCIONA ===== */
+.como {
+  background: var(--crema);
+}
+
+.como-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+@media (max-width: 600px) {
+  .como-grid { grid-template-columns: 1fr; }
+}
+
+.como-item {
+  background: white;
+  border-radius: 16px;
+  padding: 1.5rem;
+  border: 2px solid transparent;
+  transition: border-color 0.3s ease;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+}
+
+.como-item:hover {
+  border-color: var(--verde);
+}
+
+.como-item h3 {
+  font-family: 'Boogaloo', cursive;
+  font-size: 1.3rem;
+  color: var(--violeta);
+  margin-bottom: 0.5rem;
+}
+
+.como-item p {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #5a4e6a;
+}
+
+/* ===== ECONOMÍA ===== */
+.economia {
+  background: linear-gradient(135deg, var(--verde), #1a9e94);
+  color: white;
+}
+
+.economia .section-label {
+  color: var(--amarillo);
+}
+
+.eco-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.eco-card {
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(8px);
+  border-radius: 16px;
+  padding: 1.2rem 1.5rem;
+  flex: 1 1 200px;
+  text-align: center;
+  border: 1px solid rgba(255,255,255,0.2);
+}
+
+.eco-card .eco-number {
+  font-family: 'Boogaloo', cursive;
+  font-size: 2.5rem;
+  display: block;
+  margin-bottom: 0.2rem;
+}
+
+.eco-card .eco-label {
+  font-size: 0.9rem;
+  opacity: 0.9;
+}
+
+/* ===== IMPACTO ===== */
+.impacto {
+  background: var(--oscuro);
+  color: var(--crema);
+  position: relative;
+  overflow: hidden;
+  padding: 5rem 1.5rem;
+}
+
+.impacto::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 10% 90%, var(--violeta) 0%, transparent 40%),
+    radial-gradient(circle at 90% 10%, var(--rosa) 0%, transparent 40%);
+  opacity: 0.25;
+}
+
+.impacto .section-inner {
+  position: relative;
+  z-index: 2;
+}
+
+.impacto .section-label {
+  color: var(--verde);
+}
+
+.impacto .section-title {
+  color: var(--crema);
+}
+
+.impacto-intro {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: rgba(255,255,255,0.8);
+  max-width: 600px;
+  margin-bottom: 2.5rem;
+}
+
+.impacto-intro em {
+  color: var(--amarillo);
+  font-style: normal;
+  font-weight: 700;
+}
+
+.impacto-pillars {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+}
+
+.impacto-pillar {
+  background: rgba(255,255,255,0.05);
+  border-left: 4px solid;
+  border-radius: 0 14px 14px 0;
+  padding: 1.5rem 1.5rem 1.5rem 1.8rem;
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.impacto-pillar:hover {
+  transform: translateX(6px);
+  background: rgba(255,255,255,0.08);
+}
+
+.impacto-pillar:nth-child(1) { border-color: var(--rosa); }
+.impacto-pillar:nth-child(2) { border-color: var(--amarillo); }
+.impacto-pillar:nth-child(3) { border-color: var(--verde); }
+.impacto-pillar:nth-child(4) { border-color: var(--celeste); }
+
+.impacto-pillar h3 {
+  font-family: 'Boogaloo', cursive;
+  font-size: 1.3rem;
+  margin-bottom: 0.4rem;
+}
+
+.impacto-pillar:nth-child(1) h3 { color: var(--rosa); }
+.impacto-pillar:nth-child(2) h3 { color: var(--amarillo); }
+.impacto-pillar:nth-child(3) h3 { color: var(--verde); }
+.impacto-pillar:nth-child(4) h3 { color: var(--celeste); }
+
+.impacto-pillar p {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: rgba(255,255,255,0.7);
+}
+
+.proyeccion-box {
+  background: linear-gradient(135deg, rgba(46,196,182,0.15), rgba(123,45,142,0.15));
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 20px;
+  padding: 2.5rem 2rem;
+  text-align: center;
+  position: relative;
+}
+
+.proyeccion-box::before {
+  content: '✦';
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--oscuro);
+  padding: 0 0.8rem;
+  font-size: 1.2rem;
+  color: var(--amarillo);
+}
+
+.proyeccion-title {
+  font-family: 'Permanent Marker', cursive;
+  font-size: 1.1rem;
+  color: var(--amarillo);
+  letter-spacing: 0.08em;
+  margin-bottom: 1.2rem;
+}
+
+.proyeccion-text {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: rgba(255,255,255,0.8);
+  max-width: 550px;
+  margin: 0 auto;
+}
+
+.proyeccion-text strong {
+  color: var(--verde);
+}
+
+/* ===== SUMARSE ===== */
+.sumarse {
+  background: var(--rosa);
+  color: white;
+  text-align: center;
+  padding: 5rem 1.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.sumarse::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 30% 70%, var(--naranja) 0%, transparent 50%);
+  opacity: 0.3;
+}
+
+.sumarse .section-inner {
+  position: relative;
+  z-index: 2;
+}
+
+.sumarse .section-title {
+  color: white;
+  margin-bottom: 1rem;
+}
+
+.sumarse .section-text {
+  color: rgba(255,255,255,0.9);
+  margin: 0 auto 2rem;
+  text-align: center;
+  max-width: 500px;
+}
+
+.pregunta-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 2.5rem;
+}
+
+.pregunta-card {
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(8px);
+  border-radius: 50%;
+  width: 160px;
+  height: 160px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 1rem;
+  border: 2px dashed rgba(255,255,255,0.4);
+  font-family: 'Permanent Marker', cursive;
+  font-size: 1rem;
+  line-height: 1.3;
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.pregunta-card:hover {
+  transform: scale(1.08) rotate(-3deg);
+  background: rgba(255,255,255,0.25);
+}
+
+/* ===== PASOS ===== */
+.pasos {
+  background: var(--crema);
+  padding-bottom: 5rem;
+}
+
+.pasos-timeline {
+  margin-top: 2rem;
+  position: relative;
+  padding-left: 2.5rem;
+}
+
+.pasos-timeline::before {
+  content: '';
+  position: absolute;
+  left: 8px;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: linear-gradient(180deg, var(--rosa), var(--violeta), var(--verde));
+  border-radius: 3px;
+}
+
+.paso {
+  position: relative;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.paso::before {
+  content: '';
+  position: absolute;
+  left: -2.5rem;
+  top: 6px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 3px solid var(--rosa);
+  background: var(--crema);
+}
+
+.paso:nth-child(2)::before { border-color: var(--naranja); }
+.paso:nth-child(3)::before { border-color: var(--amarillo); }
+.paso:nth-child(4)::before { border-color: var(--verde); }
+.paso:nth-child(5)::before { border-color: var(--celeste); }
+.paso:nth-child(6)::before { border-color: var(--violeta); }
+
+.paso h3 {
+  font-family: 'Nunito', sans-serif;
+  font-weight: 800;
+  font-size: 1.05rem;
+  margin-bottom: 0.3rem;
+  color: var(--oscuro);
+}
+
+.paso p {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: #5a4e6a;
+}
+
+/* ===== FOOTER ===== */
+footer {
+  background: var(--oscuro);
+  color: rgba(255,255,255,0.5);
+  text-align: center;
+  padding: 2rem 1.5rem;
+  font-size: 0.85rem;
+}
+
+footer span {
+  color: var(--rosa);
+}
+
+/* ===== SCROLL ANIMATIONS ===== */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ===== WAVY DIVIDER ===== */
+.wave-divider {
+  width: 100%;
+  height: 60px;
+  position: relative;
+  overflow: hidden;
+}
+
+.wave-divider svg {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-confetti" id="confetti"></div>
+  <div class="hero-content">
+    <div class="hero-badge">Baila la Chola presenta</div>
+    <h1>Espacio Cholar</h1>
+    <h2>Talleres de saberes populares</h2>
+    <p class="hero-frase">
+      Un lugar donde lo que sabemos <em>se comparte</em>,
+      lo que soñamos <em>se construye</em>,
+      y lo que hacemos <em>se profesionaliza</em>.
+    </p>
+    <div class="scroll-cue">↓</div>
+  </div>
+</section>
+
+<!-- QUÉ ES -->
+<section class="que-es">
+  <div class="section-inner">
+    <div class="reveal">
+      <p class="section-label">El sueño</p>
+      <h2 class="section-title">¿Qué es el Espacio Cholar?</h2>
+      <p class="section-text">
+        Es un espacio de formación donde <strong>integrantes de Baila la Chola comparten lo que saben</strong> con otrxs, a través de talleres abiertos. Nace de la convicción de que nuestros saberes artísticos y de gestión cultural tienen un valor enorme — y de las ganas de <strong>vivir de esto</strong>.
+      </p>
+      <br>
+      <p class="section-text">
+        No es una academia. Es un proyecto colectivo para <strong>sostener la murga, fortalecer la comunidad y profesionalizar lo que hacemos</strong> sin perder lo que somos.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- TALLERES -->
+<section class="talleres">
+  <div class="section-inner">
+    <div class="reveal">
+      <p class="section-label">¿Qué se enseña?</p>
+      <h2 class="section-title">Ejes de talleres</h2>
+    </div>
+    <div class="talleres-grid">
+      <div class="taller-card reveal">
+        <span class="taller-emoji">🎼</span>
+        <h3>Arreglos musicales</h3>
+        <p>Clínicas de revisión, arreglos desde cero, composición para murga.</p>
+      </div>
+      <div class="taller-card reveal">
+        <span class="taller-emoji">🥁</span>
+        <h3>Percusión</h3>
+        <p>Técnicas de batería de murga, ensamble, ritmos.</p>
+      </div>
+      <div class="taller-card reveal">
+        <span class="taller-emoji">✍️</span>
+        <h3>Letras</h3>
+        <p>Escritura colectiva, humor político, estructura de espectáculos.</p>
+      </div>
+      <div class="taller-card reveal">
+        <span class="taller-emoji">🎭</span>
+        <h3>Puesta en escena</h3>
+        <p>Disociación, actuación, manejo del escenario.</p>
+      </div>
+      <div class="taller-card reveal">
+        <span class="taller-emoji">🎤</span>
+        <h3>Técnica vocal</h3>
+        <p>Proyección, respiración, trabajo grupal sobre voces populares.</p>
+      </div>
+      <div class="taller-card reveal">
+        <span class="taller-emoji">📱</span>
+        <h3>Redes sociales</h3>
+        <p>Estrategia, edición de contenido, identidad digital popular.</p>
+      </div>
+      <div class="taller-card reveal">
+        <span class="taller-emoji">🎚</span>
+        <h3>Producción</h3>
+        <p>Armado de fechas, autogestión, organización de eventos.</p>
+      </div>
+      <div class="taller-card reveal">
+        <span class="taller-emoji">🤝</span>
+        <h3>Gestión cultural</h3>
+        <p>Cómo armar proyectos, fondos, alianzas, producción comunitaria.</p>
+      </div>
+    </div>
+    <p style="margin-top: 1.5rem; opacity: 0.6; font-size: 0.9rem;" class="reveal">
+      Cada taller puede ser dictado por unx o más integrantes, y abierto a participantes internxs o externxs.
+    </p>
+  </div>
+</section>
+
+<!-- CÓMO FUNCIONA -->
+<section class="como">
+  <div class="section-inner">
+    <div class="reveal">
+      <p class="section-label">La forma</p>
+      <h2 class="section-title">¿Cómo funciona?</h2>
+    </div>
+    <div class="como-grid">
+      <div class="como-item reveal">
+        <h3>🏠 Presencial</h3>
+        <p>En centros culturales, salas barriales o clubes. Se buscan convenios de intercambio por el uso del espacio.</p>
+      </div>
+      <div class="como-item reveal">
+        <h3>💻 Virtual</h3>
+        <p>Para contenidos teóricos o de gestión. Se pueden grabar para armar una "biblioteca cholar" futura.</p>
+      </div>
+      <div class="como-item reveal">
+        <h3>⏱ Intensivos</h3>
+        <p>Talleres de un encuentro para temas puntuales. Ideal para probar formatos.</p>
+      </div>
+      <div class="como-item reveal">
+        <h3>📅 Ciclos</h3>
+        <p>Hasta 4 encuentros para profundizar. Más tiempo, más proceso, más transformación.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ECONOMÍA -->
+<section class="economia">
+  <div class="section-inner">
+    <div class="reveal">
+      <p class="section-label">El modelo</p>
+      <h2 class="section-title">Sostener el sueño</h2>
+      <p class="section-text" style="color: rgba(255,255,255,0.85);">
+        Cada taller genera ingresos que se reparten para valorar el trabajo de quienes enseñan y alimentar el fondo colectivo de la murga.
+      </p>
+    </div>
+    <div class="eco-cards reveal">
+      <div class="eco-card">
+        <span class="eco-number">70%</span>
+        <span class="eco-label">para lxs talleristas</span>
+      </div>
+      <div class="eco-card">
+        <span class="eco-number">30%</span>
+        <span class="eco-label">para el fondo de la murga</span>
+      </div>
+      <div class="eco-card">
+        <span class="eco-number">🎓</span>
+        <span class="eco-label">Becas: 1-2 cupos gratuitos por taller</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- IMPACTO Y PROYECCIÓN -->
+<section class="impacto">
+  <div class="section-inner">
+    <div class="reveal">
+      <p class="section-label">Lo que viene</p>
+      <h2 class="section-title">¿Por qué hacemos esto?</h2>
+      <p class="impacto-intro">
+        El Espacio Cholar no es solo un ciclo de talleres. Es <em>el primer paso hacia el sueño de vivir de esto</em>: demostrar que lo que hacemos tiene valor, que nuestra experiencia merece ser compartida, y que el arte popular puede sostenerse sin depender de nadie.
+      </p>
+    </div>
+
+    <div class="impacto-pillars">
+      <div class="impacto-pillar reveal">
+        <h3>Profesionalizar sin perder el alma</h3>
+        <p>Que cada chola pueda nombrar lo que sabe, enseñarlo y cobrar por eso. Convertir años de práctica colectiva en herramientas transmisibles.</p>
+      </div>
+      <div class="impacto-pillar reveal">
+        <h3>Sostener la murga económicamente</h3>
+        <p>Un flujo de ingresos genuino que no dependa de rifas ni favores. Plata que entra porque lo que ofrecemos vale.</p>
+      </div>
+      <div class="impacto-pillar reveal">
+        <h3>Ser referencia en formación popular</h3>
+        <p>Que cuando alguien quiera aprender murga, gestión cultural o producción autogestiva, piense en la Chola. Posicionarnos como escuela viva.</p>
+      </div>
+      <div class="impacto-pillar reveal">
+        <h3>Tejer redes con la comunidad</h3>
+        <p>Abrir la murga al barrio y al circuito cultural. Cada persona que pasa por un taller se vuelve parte de la red. Más alianzas, más fuerza.</p>
+      </div>
+    </div>
+
+    <div class="proyeccion-box reveal">
+      <p class="proyeccion-title">La proyección</p>
+      <p class="proyeccion-text">
+        Empezamos con 3 a 5 talleres piloto. Si funciona, vamos hacia un <strong>calendario anual con marca propia</strong>, una biblioteca de contenidos grabados, y la posibilidad de que cualquier chola que quiera <strong>pueda dar un taller y generar ingresos</strong>. A mediano plazo, el Espacio Cholar puede ser la pata formativa de Baila la Chola — el lugar donde el colectivo <strong>se reproduce, se sostiene y crece</strong>.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- SUMARSE -->
+<section class="sumarse">
+  <div class="section-inner">
+    <div class="reveal">
+      <p class="section-label" style="color: var(--amarillo);">La invitación</p>
+      <h2 class="section-title">¿Y vos, qué sabés?</h2>
+      <p class="section-text">
+        Todas las cholas tenemos algo para compartir. Algo que aprendimos haciendo, mirando, equivocándonos. Algo que otrx necesita.
+      </p>
+    </div>
+    <div class="pregunta-grid reveal">
+      <div class="pregunta-card">¿Qué sé hacer?</div>
+      <div class="pregunta-card">¿Qué me animo a enseñar?</div>
+      <div class="pregunta-card">¿Qué me gustaría aprender?</div>
+    </div>
+  </div>
+</section>
+
+<!-- PRÓXIMOS PASOS -->
+<section class="pasos">
+  <div class="section-inner">
+    <div class="reveal">
+      <p class="section-label">El camino</p>
+      <h2 class="section-title">Próximos pasos</h2>
+    </div>
+    <div class="pasos-timeline">
+      <div class="paso reveal">
+        <h3>Presentar el proyecto en asamblea</h3>
+        <p>Contar la idea, escuchar, sumar miradas.</p>
+      </div>
+      <div class="paso reveal">
+        <h3>Convocatoria interna a talleristas</h3>
+        <p>¿Qué sé? ¿Qué me animo a compartir? Curar la oferta entre todxs.</p>
+      </div>
+      <div class="paso reveal">
+        <h3>Armar la primera grilla</h3>
+        <p>3 a 5 talleres piloto para arrancar livianxs.</p>
+      </div>
+      <div class="paso reveal">
+        <h3>Conseguir espacio físico</h3>
+        <p>Buscar aliados, negociar convenios, armar el nido.</p>
+      </div>
+      <div class="paso reveal">
+        <h3>Lanzar la primera edición</h3>
+        <p>Salir a la cancha. Aprender haciendo.</p>
+      </div>
+      <div class="paso reveal">
+        <h3>Ajustar y proyectar</h3>
+        <p>Recoger aprendizajes, mejorar el modelo, soñar el calendario anual.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>Hecho con 💜 por <span>Baila la Chola</span></p>
+  <p style="margin-top: 0.3rem;">Murga transfeminista · Buenos Aires</p>
+</footer>
+
+<script>
+// Confetti
+const confettiContainer = document.getElementById('confetti');
+const colors = ['#e63985', '#ffd23f', '#7b2d8e', '#2ec4b6', '#ff6b35', '#48bfe3'];
+for (let i = 0; i < 30; i++) {
+  const piece = document.createElement('div');
+  piece.className = 'confetti-piece';
+  piece.style.left = Math.random() * 100 + '%';
+  piece.style.background = colors[Math.floor(Math.random() * colors.length)];
+  piece.style.animationDuration = (6 + Math.random() * 8) + 's';
+  piece.style.animationDelay = (Math.random() * 10) + 's';
+  piece.style.width = (6 + Math.random() * 10) + 'px';
+  piece.style.height = (6 + Math.random() * 10) + 'px';
+  piece.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
+  confettiContainer.appendChild(piece);
+}
+
+// Scroll reveal
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.15 });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
